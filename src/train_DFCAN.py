@@ -63,3 +63,24 @@ start_lr = args.start_lr
 lr_decay_factor = args.lr_decay_factor
 load_weights = args.load_weights
 optimizer_name = args.optimizer_name
+
+data_name = data_dir.split(os.sep)[-1]
+if input_channels == 1:
+    save_weights_name = model_name + '-SISR_' + data_name
+    cur_data_loader = data_loader
+    train_images_path = data_dir + '/training_wf/'
+    validate_images_path = data_dir + '/validate_wf/'
+else:
+    save_weights_name = model_name + '-SIM_' + data_name
+    cur_data_loader = data_loader_multi_channel
+    train_images_path = data_dir + '/training/'
+    validate_images_path = data_dir + '/validate/'
+save_weights_path = save_weights_dir + '/' + save_weights_name + '/'
+train_gt_path = data_dir + '/training_gt/'
+validate_gt_path = data_dir + '/validate_gt/'
+sample_path = save_weights_path + 'sampled_img/'
+
+if not os.path.exists(save_weights_path):
+    os.mkdir(save_weights_path)
+if not os.path.exists(sample_path):
+    os.mkdir(sample_path)
