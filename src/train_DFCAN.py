@@ -1,4 +1,5 @@
 import argparse
+from models import *
 
 parser = argparse.ArgumentParser()
 # --gpu_id: the gpu device you want to use in current task
@@ -84,3 +85,10 @@ if not os.path.exists(save_weights_path):
     os.mkdir(save_weights_path)
 if not os.path.exists(sample_path):
     os.mkdir(sample_path)
+
+# --------------------------------------------------------------------------------
+#                           select models and optimizer
+# --------------------------------------------------------------------------------
+modelFns = {'DFCAN': DFCAN}
+modelFN = modelFns[model_name]
+# optimizer_g = torch.optim.
