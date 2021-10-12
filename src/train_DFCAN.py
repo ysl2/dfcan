@@ -1,5 +1,8 @@
 import argparse
 from models import *
+import torch
+import os
+from utils.data_loader import data_loader, data_loader_multi_channel
 
 parser = argparse.ArgumentParser()
 # --gpu_id: the gpu device you want to use in current task
@@ -91,4 +94,4 @@ if not os.path.exists(sample_path):
 # --------------------------------------------------------------------------------
 modelFns = {'DFCAN': DFCAN}
 modelFN = modelFns[model_name]
-# optimizer_g = torch.optim.
+optimizer_g = torch.optim.Adam(modelFN.parameters(), lr=start_lr, betas=[0.9, 0.999])
